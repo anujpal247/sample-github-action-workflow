@@ -1,0 +1,14 @@
+name: "demo workflow/pipeline"
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  on-demo-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on test branch push event"
+        run: echo "This job runs on push event to test branch."
