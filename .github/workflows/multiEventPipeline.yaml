@@ -1,0 +1,17 @@
+name: "Multi Event Pipeline / Workflow" # name of the workflow
+
+on:
+  push: # Event: triggers whenever there is a push made to the repository on main branch
+    branches:
+      -main
+
+jobs:
+  on-push: # Job name
+    runs-on: ubuntu-latest
+
+    steps: # Steps to be executed as part of the job
+      - name: "Checkout Repository" # Step 1
+        uses: actions/checkout@v2
+
+      - name: "Run on Push Event" # Step 2
+        run: echo "This job runs on push event to main branch."
