@@ -8,6 +8,9 @@ on:
   pull_request: # Event: triggers whenever there is a pull request made to the repository on main branch
     branches:
       - main
+    
+    types:
+      - closed  # only trigger when PR is closed
 
   workflow_dispatch:  # manual trigger
 
@@ -35,4 +38,11 @@ jobs:
     steps:
       - name: "Run on manual workflow dispatch"
         run: echo "This job runs on manual workflow dispatch event."
-        
+
+  on-pr-closed: # Job 4
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on pull request closed"
+        run: echo "This job runs when a pull request to main branch is closed."
