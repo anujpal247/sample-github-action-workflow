@@ -1,0 +1,27 @@
+name: "demo workflow/pipeline"
+
+on:
+  push:
+    branches:
+      - test
+  
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  on-demo-push: # Job 1 
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on test branch push event"
+        run: echo "This job runs on push event to test branch."
+
+  on-demo-pr: # Job 2
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on pull request to main branch"
+        run: echo "This job runs on pull request event to main branch."
