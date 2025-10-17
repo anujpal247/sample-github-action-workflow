@@ -1,13 +1,15 @@
 name: "demo workflow/pipeline"
 
 on:
-  push:
+  push: # Event: triggers whenever there is a push made to the repository on test branch
     branches:
       - test
   
-  pull_request:
+  pull_request: # Event: triggers whenever there is a pull request made to the repository on main branch
     branches:
       - main
+
+  workflow_dispatch:  # manual trigger
 
 jobs:
   on-demo-push: # Job 1 
@@ -25,3 +27,12 @@ jobs:
     steps:
       - name: "Run on pull request to main branch"
         run: echo "This job runs on pull request event to main branch."
+
+  on-workflow-dispatch: # Job 3
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on manual workflow dispatch"
+        run: echo "This job runs on manual workflow dispatch event."
+        
