@@ -10,14 +10,16 @@ on:
       - main
 
 jobs:
-  on-demo-push:
+  on-demo-push: # Job 1 
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
 
     steps:
       - name: "Run on test branch push event"
         run: echo "This job runs on push event to test branch."
 
-  on-demo-pr:
+  on-demo-pr: # Job 2
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
 
     steps:
