@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - test
+  
+  pull_request:
+    branches:
+      - main
 
 jobs:
   on-demo-push:
@@ -12,3 +16,10 @@ jobs:
     steps:
       - name: "Run on test branch push event"
         run: echo "This job runs on push event to test branch."
+
+  on-demo-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: "Run on pull request to main branch"
+        run: echo "This job runs on pull request event to main branch."
